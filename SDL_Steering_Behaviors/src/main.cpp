@@ -11,7 +11,7 @@ using namespace std;
 
 int main(int argc, char ** argv)
 {
-
+	int a;
 	bool quit = false;
 	SDL_Event event;
 
