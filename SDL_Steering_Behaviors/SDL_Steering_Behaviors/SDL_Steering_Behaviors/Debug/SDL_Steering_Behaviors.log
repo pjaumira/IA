@@ -1,10 +1,5 @@
-﻿  utils .cpp
-  SteeringBehavior.cpp
-  SDL_SimpleApp.cpp
-  SceneKinematicSeek .cpp
+﻿  SteeringBehavior.cpp
   SceneKinematicFlee.cpp
-  main.cpp
-  Agent.cpp
-  Generando código...
-  SDL_Steering_Behaviors.vcxproj -> C:\C++\IA\SDL_Steering_Behaviors\\bin\SDL_Steering_Behaviors.exe
-  SDL_Steering_Behaviors.vcxproj -> C:\C++\IA\SDL_Steering_Behaviors\\bin\SDL_Steering_Behaviors.pdb (Partial PDB)
+  Generating Code...
+  SDL_Steering_Behaviors.vcxproj -> C:\Users\pmorales\IA\SDL_Steering_Behaviors\\bin\SDL_Steering_Behaviors.exe
+  SDL_Steering_Behaviors.vcxproj -> C:\Users\pmorales\IA\SDL_Steering_Behaviors\\bin\SDL_Steering_Behaviors.pdb (Partial PDB)
