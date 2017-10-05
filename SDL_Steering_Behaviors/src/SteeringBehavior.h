@@ -9,8 +9,12 @@ class SteeringBehavior
 public:
 	SteeringBehavior();
 	~SteeringBehavior();
+
+	//Dummy Seek
 	Vector2D KinematicSeek(Agent *agent, Vector2D target, float dtime);
 	Vector2D KinematicSeek(Agent *agent, Agent *target, float dtime);
+
+	//Dummy Flee
 	Vector2D KinematicFlee(Agent *agent, Vector2D target, float dtime);
 	Vector2D KinematicFlee(Agent *agent, Agent *target, float dtime);
 
