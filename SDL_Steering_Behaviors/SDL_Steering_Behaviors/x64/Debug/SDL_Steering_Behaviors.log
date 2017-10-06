@@ -5,7 +5,8 @@
   SceneKinematicSeek .cpp
   SceneKinematicFlee.cpp
   SceneKinematicArrive.cpp
+  SceneEvade.cpp
   main.cpp
   Agent.cpp
-  Generando código...
-LINK : fatal error LNK1104: no se puede abrir el archivo 'SDL2.lib'
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'SDL2.lib'
