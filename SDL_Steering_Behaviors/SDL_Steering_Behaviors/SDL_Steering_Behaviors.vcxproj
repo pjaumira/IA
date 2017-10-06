@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\SceneKinematicArrive.cpp" />
     <ClCompile Include="..\src\SceneKinematicFlee.cpp" />
     <ClCompile Include="..\src\SceneKinematicSeek .cpp" />
     <ClCompile Include="..\src\SDL_SimpleApp.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
+    <ClInclude Include="..\src\SceneKinematicArrive.h" />
     <ClInclude Include="..\src\SceneKinematicFlee.h" />
     <ClInclude Include="..\src\SceneKinematicSeek.h" />
     <ClInclude Include="..\src\SteeringBehavior.h" />

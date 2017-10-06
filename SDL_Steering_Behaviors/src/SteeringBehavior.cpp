@@ -74,9 +74,11 @@ Vector2D SteeringBehavior::Flee(Agent *agent, Agent *target, float dtime)
 Vector2D SteeringBehavior::Arrive(Agent *agent, Vector2D target, float dtime)
 {
 	// Radius to start slowing down
+#ifndef SlowingRadius
 	const int SlowingRadius = 2;
+#endif // !SlowingRadius
 
-	/*float distanceToTarget = target - agent->position;
+	float distanceToTarget = Vector2D::Distance(target, agent->position);
 	Vector2D ArriveSpeed = agent->max_velocity;
 	float speedFactor = 1.0f;
 	if (distanceToTarget < SlowingRadius)
@@ -86,8 +88,8 @@ Vector2D SteeringBehavior::Arrive(Agent *agent, Vector2D target, float dtime)
 	ArriveSpeed *= speedFactor;
 	
 	return ArriveSpeed;
-	*/
-	return Vector2D(0, 0);
+	
+	//return Vector2D(0, 0);
 }
 
 Vector2D SteeringBehavior::Arrive(Agent *agent, Agent *target, float dtime)
