@@ -106,20 +106,10 @@ Vector2D SteeringBehavior::Pursue(Agent *agent, Vector2D target, float dtime)
 
 Vector2D SteeringBehavior::Pursue(Agent *agent, Agent *target, float dtime)
 {
-	////Comprobar si target necessita canvis per ser un altre "agent"
-	////Vector2D T = (target->position - agent->position)/agent->velocity;
-	//Vector2D predictedTarget = target->position + target->velocity * (target->position - agent->position) / agent->velocity;
-
-	//// Maximum Time to look ahead to calculate FuturePosition
-	//const float MaxLookAheadTime = 50;
-
-	//// If TimeLookAhead is too big, the prediction can be
-	//// misleading, limit TimeLookAhead
-	//if (TimeLookAhead > MaxLookAheadTime)
-	//	TimeLookAhead = MaxLookAheadTime;
-
-	//return Pursue(agent, target->position, dtime);
-	return Vector2D(0, 0);
+	Vector2D DistanceToTarget = target->position - agent->position;
+	float t = hypot(DistanceToTarget.x, DistanceToTarget.y) / agent->max_velocity;
+	Vector2D TargetPosition = target->position + (target->getVelocity() * t);
+	return Seek(agent, TargetPosition, dtime);
 }
 
 //Evade
