@@ -1,9 +1,13 @@
 ﻿  utils .cpp
   SteeringBehavior.cpp
+c:\users\alumno\source\repos\ia\sdl_steering_behaviors\src\steeringbehavior.cpp(105): error C2679: binary '*': no operator found which takes a right-hand operand of type 'Vector2D' (or there is no acceptable conversion)
+  c:\users\alumno\source\repos\ia\sdl_steering_behaviors\src\vector2d.h(57): note: could be 'Vector2D Vector2D::operator *(float)'
+  c:\users\alumno\source\repos\ia\sdl_steering_behaviors\src\steeringbehavior.cpp(105): note: while trying to match the argument list '(Vector2D, Vector2D)'
+c:\users\alumno\source\repos\ia\sdl_steering_behaviors\src\steeringbehavior.cpp(112): error C2065: 'TimeLookAhead': undeclared identifier
+c:\users\alumno\source\repos\ia\sdl_steering_behaviors\src\steeringbehavior.cpp(113): error C2065: 'TimeLookAhead': undeclared identifier
   SDL_SimpleApp.cpp
   SceneKinematicSeek .cpp
   SceneKinematicFlee.cpp
   main.cpp
   Agent.cpp
   Generating Code...
-LINK : fatal error LNK1561: entry point must be defined
