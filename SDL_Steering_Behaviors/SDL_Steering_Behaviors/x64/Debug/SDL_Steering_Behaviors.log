@@ -1,2 +1,11 @@
-﻿  SteeringBehavior.cpp
-LINK : fatal error LNK1104: cannot open file 'SDL2.lib'
+﻿  utils .cpp
+  SteeringBehavior.cpp
+  SDL_SimpleApp.cpp
+  ScenePursue.cpp
+  SceneKinematicSeek .cpp
+  SceneKinematicFlee.cpp
+  SceneKinematicArrive.cpp
+  main.cpp
+  Agent.cpp
+  Generando código...
+LINK : fatal error LNK1104: no se puede abrir el archivo 'SDL2.lib'

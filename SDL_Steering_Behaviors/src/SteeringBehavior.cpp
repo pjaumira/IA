@@ -88,8 +88,6 @@ Vector2D SteeringBehavior::Arrive(Agent *agent, Vector2D target, float dtime)
 	ArriveSpeed *= speedFactor;
 	
 	return ArriveSpeed;
-	
-	//return Vector2D(0, 0);
 }
 
 Vector2D SteeringBehavior::Arrive(Agent *agent, Agent *target, float dtime)
@@ -120,7 +118,10 @@ Vector2D SteeringBehavior::Evade(Agent *agent, Vector2D target, float dtime)
 
 Vector2D SteeringBehavior::Evade(Agent *agent, Agent *target, float dtime)
 {
-	return Evade(agent, target->position, dtime);
+	Vector2D DistanceToTarget = target->position - agent->position;
+	float t = hypot(DistanceToTarget.x, DistanceToTarget.y) / agent->max_velocity;
+	Vector2D TargetPosition = target->position + (target->getVelocity() * t);
+	return Flee(agent, TargetPosition, dtime);
 }
 
 //Wander
