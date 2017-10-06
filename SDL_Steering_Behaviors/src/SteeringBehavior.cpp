@@ -40,12 +40,15 @@ Vector2D SteeringBehavior::KinematicFlee(Agent *agent, Agent *target, float dtim
 /* Add here your own Steering Behavior functions definitions */
 
 //Seek
+//Algoritmo implementado
 Vector2D SteeringBehavior::Seek(Agent *agent, Vector2D target, float dtime)
 {
 	Vector2D DesiredVelocity = target - agent->position;
 	DesiredVelocity.Normalize();
 	DesiredVelocity *= agent->max_velocity;
-	return DesiredVelocity;
+	Vector2D SteeringForce = (DesiredVelocity - agent->velocity);
+	SteeringForce /= agent->max_velocity;
+	return SteeringForce * agent->max_force;
 }
 
 Vector2D SteeringBehavior::Seek(Agent *agent, Agent *target, float dtime)
@@ -84,6 +87,7 @@ Vector2D SteeringBehavior::Arrive(Agent *agent, Vector2D target, float dtime)
 	
 	return ArriveSpeed;
 	*/
+	return Vector2D(0, 0);
 }
 
 Vector2D SteeringBehavior::Arrive(Agent *agent, Agent *target, float dtime)
@@ -113,6 +117,7 @@ Vector2D SteeringBehavior::Pursue(Agent *agent, Agent *target, float dtime)
 	//	TimeLookAhead = MaxLookAheadTime;
 
 	//return Pursue(agent, target->position, dtime);
+	return Vector2D(0, 0);
 }
 
 //Evade
