@@ -1,6 +1,7 @@
 #pragma once
 #include "Agent.h"
 #include "Vector2D.h"
+#include <vector>
 
 class Agent;
 
@@ -43,4 +44,8 @@ public:
 	//Wander
 	Vector2D Wander(Agent *agent, Vector2D target, float dtime);
 	Vector2D Wander(Agent *agent, Agent *target, float dtime);
+
+	//Flocking
+	Vector2D Flocking(Agent *agent, Vector2D target, float dtime, std::vector<Agent*> agents);
+	Vector2D Flocking(Agent *agent, Agent *target, float dtime);
 };

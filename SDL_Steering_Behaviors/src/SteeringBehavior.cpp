@@ -1,5 +1,8 @@
 #include "SteeringBehavior.h"
 
+#include <vector>
+
+
 
 
 SteeringBehavior::SteeringBehavior()
@@ -184,4 +187,75 @@ Vector2D SteeringBehavior::Wander(Agent *agent, Vector2D target, float dtime)
 Vector2D SteeringBehavior::Wander(Agent *agent, Agent *target, float dtime)
 {
 	return Wander(agent, target->position, dtime);
+}
+
+//Flocking
+Vector2D SteeringBehavior::Flocking(Agent *agent, Vector2D target, float dtime, std::vector<Agent*> agents)
+{
+
+#define NEIGHBORHOOD_RADIUS 100.0f
+#define K_SEPARATION_FORCE 60.0f
+#define K_COHESION_FORCE 40.0f
+#define K_ALIGNMENT_FORCE 20.0f
+#define K_MAX_FLOCKING_FORCE 100.0f
+
+
+	int neighborCount = 0;
+	Vector2D separationVector = {};
+	Vector2D averagePosition = {};
+	Vector2D averageVelocity = {};
+
+	//Neighborhood radius
+	draw_circle(TheApp::Instance()->getRenderer(), (int)agent->position.x, (int)agent->position.y, NEIGHBORHOOD_RADIUS, 0, 255, 0, 255);
+
+	for (int i = 0; i < agents.size(); i++) {
+		//calculo la distancia antes para no repetir el calculo en el if
+		int distance = Vector2D::Distance(agents[i]->position, agent->position);
+		if (distance != 0 && distance < NEIGHBORHOOD_RADIUS) {
+			
+			//Separation
+			separationVector += (agent->position - agents[i]->position);
+
+			//Cohesion
+			averagePosition += agent->position;
+
+			//Alignment
+			averageVelocity += agent->velocity;
+
+			++neighborCount;
+		}
+	}
+
+	//Separation
+	separationVector /= neighborCount;
+	Vector2D separationDirection = Vector2D::Normalize(separationVector);
+
+	//Cohesion
+	averagePosition /= neighborCount;
+	averagePosition -= agent->position;
+	Vector2D cohesionDirection = Vector2D::Normalize(averagePosition);
+
+	//Alignment
+	averageVelocity /= neighborCount;
+	Vector2D alignmentDirection = Vector2D::Normalize(averageVelocity);
+
+	//flocking
+	Vector2D flockingForce = separationDirection * K_SEPARATION_FORCE
+						   + cohesionDirection * K_COHESION_FORCE
+						   + alignmentDirection * K_ALIGNMENT_FORCE;
+
+	flockingForce = Vector2D::Normalize(flockingForce);
+
+	flockingForce *= K_MAX_FLOCKING_FORCE;
+	//flockingForce *= agent->max_force;
+	
+	return flockingForce + Arrive(agent, target, dtime);
+
+	//return flockingForce;
+}
+
+
+Vector2D SteeringBehavior::Flocking(Agent *agent, Agent *target, float dtime)
+{
+	return (agent, target->position, dtime);
 }

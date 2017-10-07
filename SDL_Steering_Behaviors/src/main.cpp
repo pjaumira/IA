@@ -9,6 +9,7 @@
 #include "SceneKinematicPursue.h"
 #include "SceneKinematicEvade.h"
 #include "SceneKinematicWander.h"
+#include "SceneKinematicFlocking.h"
 
 using namespace std;
 
@@ -73,7 +74,13 @@ int main(int argc, char ** argv)
 				curr_scene = new SceneKinematicWander;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
-
+			//Flocking
+			if (event.key.keysym.scancode == SDL_SCANCODE_7)
+			{
+				delete(curr_scene);
+				curr_scene = new SceneKinematicFlocking;
+				app->setWindowTitle(curr_scene->getTitle());
+			}
 
 			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
 			{

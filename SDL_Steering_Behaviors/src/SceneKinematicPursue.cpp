@@ -42,7 +42,7 @@ void SceneKinematicPursue::update(float dtime, SDL_Event *event)
 		break;
 	}
 
-	Vector2D steering_force = agents[1]->Behavior()->Pursue(agents[1], agents[1]->getTarget(), dtime);
+	Vector2D steering_force = agents[1]->Behavior()->Arrive(agents[1], agents[1]->getTarget(), dtime);
 	agents[1]->update(steering_force, dtime, event);
 	agents[0]->setTarget(agents[1]->getPosition());
 	steering_force = agents[0]->Behavior()->Pursue(agents[0], agents[1], dtime);
