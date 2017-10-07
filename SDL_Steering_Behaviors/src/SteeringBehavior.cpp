@@ -140,40 +140,45 @@ Vector2D SteeringBehavior::Evade(Agent *agent, Agent *target, float dtime)
 //Wander
 Vector2D SteeringBehavior::Wander(Agent *agent, Vector2D target, float dtime)
 {
-	////Maximum Change of Angle in one frame
-	//const float WanderMaxAngleChange = 30;
+	//Maximum Change of Angle in one frame
+	const float WanderMaxAngleChange = 30;
 
-	////Distance from Agent to Wander Circle Center
-	//const float WanderOffset = 200;
+	//Distance from Agent to Wander Circle Center
+	const float WanderOffset = 200;
 
-	////Radius of Wander Circle
-	//const float WanderRadius = 100;
+	//Radius of Wander Circle
+	const float WanderRadius = 100;
 
-	//float RandomBinomial = 0.0f;
-	//float TargetAngle = 0.0f;
+	float RandomBinomial = 0.0f;
+	float TargetAngle = agent->wanderAngle;
 
-	////Update Wander Angle
-	//if (agent->wanderCounter > 1000.0f) {
-	//	RandomBinomial = ((float)rand() / (RAND_MAX)) - ((float)rand() / (RAND_MAX));
-	//	agent->wanderAngle += RandomBinomial * WanderMaxAngleChange;
-	//	TargetAngle = agent->orientation + agent->wanderAngle;
+	//Update Wander Angle
+	if (agent->wanderCounter > 900.0f) {
+		RandomBinomial = ((float)rand() / (RAND_MAX)) - ((float)rand() / (RAND_MAX));
+		agent->wanderAngle += RandomBinomial * WanderMaxAngleChange;
+		TargetAngle = agent->orientation + agent->wanderAngle;
 
-	//	agent->wanderCounter = 0.0f;
-	//}
-	//agent->wanderCounter += 1.0f;
-	////crear un contador aqui para frenar la ejecución medio segundo, por ejemplo
-	////el contador se debe alojar en agent o en algun otro lado, porque sino la ejecución se encalla aqui
+		agent->wanderCounter = 0.0f;
+	}
+	agent->wanderCounter += 1.0f;
+	//crear un contador aqui para frenar la ejecución medio segundo, por ejemplo
+	//el contador se debe alojar en agent o en algun otro lado, porque sino la ejecución se encalla aqui
 
-	////Calculate new wander Position
-	//Vector2D CircleCenter = agent->position + Vector2D::Normalize(agent->velocity) * WanderOffset;
+	//Calculate new wander Position
+	Vector2D CircleCenter = agent->position + Vector2D::Normalize(agent->velocity) * WanderOffset;
 
-	//Vector2D TargetPosition = (0, 0);
+	Vector2D TargetPosition = (0, 0);
 
-	//TargetPosition.x = CircleCenter.x + WanderRadius * cos(TargetAngle);
-	//TargetPosition.y = CircleCenter.y + WanderRadius * sin(TargetAngle);
+	TargetPosition.x = CircleCenter.x + WanderRadius * cos(TargetAngle);
+	TargetPosition.y = CircleCenter.y + WanderRadius * sin(TargetAngle);
 
-	//return TargetPosition;
-	return Vector2D(0, 0);
+	//CircleCenter
+	draw_circle(TheApp::Instance()->getRenderer(), (int)CircleCenter.x, (int)CircleCenter.y, WanderRadius, 255, 255, 255, 255);
+	//TargetPosition
+	draw_circle(TheApp::Instance()->getRenderer(), (int)TargetPosition.x, (int)TargetPosition.y, 15, 0, 255, 0, 0);
+
+	return TargetPosition;
+	//return Vector2D(0, 0);
 }
 
 Vector2D SteeringBehavior::Wander(Agent *agent, Agent *target, float dtime)

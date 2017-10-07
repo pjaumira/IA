@@ -1,18 +1,18 @@
-#include "SceneFlee.h"
+#include "SceneKinematicWander.h"
 
 using namespace std;
 
-SceneFlee::SceneFlee()
+SceneKinematicWander::SceneKinematicWander()
 {
 	Agent *agent = new Agent;
-	agent->setPosition(Vector2D(640,360));
+	agent->setPosition(Vector2D(640, 360));
 	agent->setTarget(Vector2D(640, 360));
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agents.push_back(agent);
 	target = Vector2D(640, 360);
 }
 
-SceneFlee::~SceneFlee()
+SceneKinematicWander::~SceneKinematicWander()
 {
 	for (int i = 0; i < (int)agents.size(); i++)
 	{
@@ -20,7 +20,7 @@ SceneFlee::~SceneFlee()
 	}
 }
 
-void SceneFlee::update(float dtime, SDL_Event *event)
+void SceneKinematicWander::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
@@ -35,17 +35,17 @@ void SceneFlee::update(float dtime, SDL_Event *event)
 	default:
 		break;
 	}
-	Vector2D steering_force = agents[0]->Behavior()->Flee(agents[0],agents[0]->getTarget(),dtime);
+	Vector2D steering_force = agents[0]->Behavior()->Wander(agents[0], agents[0]->getTarget(), dtime);
 	agents[0]->update(steering_force, dtime, event);
 }
 
-void SceneFlee::draw()
+void SceneKinematicWander::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
 	agents[0]->draw();
 }
 
-const char* SceneFlee::getTitle()
+const char* SceneKinematicWander::getTitle()
 {
-	return "SDL Steering Behaviors :: Flee Demo";
+	return "SDL Steering Behaviors :: Wander";
 }

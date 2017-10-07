@@ -1,8 +1,8 @@
-#include "ScenePursue.h"
+#include "SceneKinematicPursue.h"
 
 using namespace std;
 
-ScenePursue::ScenePursue()
+SceneKinematicPursue::SceneKinematicPursue()
 {
 	Agent *agent = new Agent;
 	agent->setTarget(Vector2D(100, 100));
@@ -18,7 +18,7 @@ ScenePursue::ScenePursue()
 	target = Vector2D(900, 650);
 }
 
-ScenePursue::~ScenePursue()
+SceneKinematicPursue::~SceneKinematicPursue()
 {
 	for (int i = 0; i < (int)agents.size(); i++)
 	{
@@ -26,7 +26,7 @@ ScenePursue::~ScenePursue()
 	}
 }
 
-void ScenePursue::update(float dtime, SDL_Event *event)
+void SceneKinematicPursue::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
@@ -42,14 +42,14 @@ void ScenePursue::update(float dtime, SDL_Event *event)
 		break;
 	}
 
-	Vector2D steering_force = agents[1]->Behavior()->Arrive(agents[1], agents[1]->getTarget(), dtime);
+	Vector2D steering_force = agents[1]->Behavior()->Pursue(agents[1], agents[1]->getTarget(), dtime);
 	agents[1]->update(steering_force, dtime, event);
 	agents[0]->setTarget(agents[1]->getPosition());
 	steering_force = agents[0]->Behavior()->Pursue(agents[0], agents[1], dtime);
 	agents[0]->update(steering_force, dtime, event);
 }
 
-void ScenePursue::draw()
+void SceneKinematicPursue::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
 	for (int i = 0; i < (int)agents.size(); i++)
@@ -58,7 +58,7 @@ void ScenePursue::draw()
 	}
 }
 
-const char* ScenePursue::getTitle()
+const char* SceneKinematicPursue::getTitle()
 {
-	return "SDL Steering Behaviors :: Pursue Demo";
+	return "SDL Steering Behaviors :: Pursue";
 }

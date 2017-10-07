@@ -23,6 +23,8 @@ private:
 	float orientation;
 	float max_force;
 	float max_velocity;
+	float wanderAngle;
+	float wanderCounter;
 
 	SDL_Color color;
 

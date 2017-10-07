@@ -3,12 +3,12 @@
 #include "Scene.h"
 #include "Agent.h"
 
-class SceneSeekSeek :
+class SceneKinematicEvade :
 	public Scene
 {
 public:
-	SceneSeekSeek();
-	~SceneSeekSeek();
+	SceneKinematicEvade();
+	~SceneKinematicEvade();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
@@ -16,4 +16,3 @@ private:
 	std::vector<Agent*> agents;
 	Vector2D target;
 };
-

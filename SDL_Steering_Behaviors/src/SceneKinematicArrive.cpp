@@ -47,5 +47,5 @@ void SceneKinematicArrive::draw()
 
 const char* SceneKinematicArrive::getTitle()
 {
-	return "SDL Steering Behaviors :: KinematicFlee Demo";
+	return "SDL Steering Behaviors :: Arrive";
 }

@@ -39,10 +39,13 @@
     <ClCompile Include="..\src\SceneKinematicArrive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ScenePursue.cpp">
+    <ClCompile Include="..\src\SceneKinematicWander.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SceneEvade.cpp">
+    <ClCompile Include="..\src\SceneKinematicPursue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SceneKinematicEvade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,22 +74,16 @@
     <ClInclude Include="..\src\SceneKinematicSeek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSeek.h">
+    <ClInclude Include="..\src\SceneKinematicWander.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneFlee.h">
+    <ClInclude Include="..\..\..\..\..\Desktop\IA\SDL_Steering_Behaviors\src\SceneKinematicArrive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SceneKinematicArrive.h">
+    <ClInclude Include="..\src\SceneKinematicEvade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SceneSeekPursue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ScenePursue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SceneEvade.h">
+    <ClInclude Include="..\src\SceneKinematicPursue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

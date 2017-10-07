@@ -1,8 +1,8 @@
-#include "SceneEvade.h"
+#include "SceneKinematicEvade.h"
 
 using namespace std;
 
-SceneEvade::SceneEvade()
+SceneKinematicEvade::SceneKinematicEvade()
 {
 	Agent *agent = new Agent;
 	agent->setTarget(Vector2D(100, 100));
@@ -18,7 +18,7 @@ SceneEvade::SceneEvade()
 	target = Vector2D(900, 650);
 }
 
-SceneEvade::~SceneEvade()
+SceneKinematicEvade::~SceneKinematicEvade()
 {
 	for (int i = 0; i < (int)agents.size(); i++)
 	{
@@ -26,7 +26,7 @@ SceneEvade::~SceneEvade()
 	}
 }
 
-void SceneEvade::update(float dtime, SDL_Event *event)
+void SceneKinematicEvade::update(float dtime, SDL_Event *event)
 {
 	/* Keyboard & Mouse events */
 	switch (event->type) {
@@ -42,14 +42,14 @@ void SceneEvade::update(float dtime, SDL_Event *event)
 		break;
 	}
 
-	Vector2D steering_force = agents[1]->Behavior()->Seek(agents[1], agents[1]->getTarget(), dtime);
+	Vector2D steering_force = agents[1]->Behavior()->Arrive(agents[1], agents[1]->getTarget(), dtime);
 	agents[1]->update(steering_force, dtime, event);
 	agents[0]->setTarget(agents[1]->getPosition());
 	steering_force = agents[0]->Behavior()->Evade(agents[0], agents[1], dtime);
 	agents[0]->update(steering_force, dtime, event);
 }
 
-void SceneEvade::draw()
+void SceneKinematicEvade::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
 	for (int i = 0; i < (int)agents.size(); i++)
@@ -58,7 +58,7 @@ void SceneEvade::draw()
 	}
 }
 
-const char* SceneEvade::getTitle()
+const char* SceneKinematicEvade::getTitle()
 {
-	return "SDL Steering Behaviors :: Pursue Demo";
+	return "SDL Steering Behaviors :: Evade";
 }
