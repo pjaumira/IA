@@ -5,6 +5,9 @@
 #include "Scene.h"
 #include "Vector2D.h"
 
+#define WIN_WIDTH 1280
+#define WIN_HEIGHT 768
+
 class SDL_SimpleApp
 {
 private:

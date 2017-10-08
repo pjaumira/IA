@@ -141,6 +141,7 @@
     <ClCompile Include="..\src\SceneKinematicEvade.cpp" />
     <ClCompile Include="..\src\SceneKinematicFlee.cpp" />
     <ClCompile Include="..\src\SceneKinematicFlocking.cpp" />
+    <ClCompile Include="..\src\SceneKinematicPerimeterAvoidance.cpp" />
     <ClCompile Include="..\src\SceneKinematicPursue.cpp" />
     <ClCompile Include="..\src\SceneKinematicSeek .cpp" />
     <ClCompile Include="..\src\SceneKinematicWander.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="..\src\SceneKinematicEvade.h" />
     <ClInclude Include="..\src\SceneKinematicFlee.h" />
     <ClInclude Include="..\src\SceneKinematicFlocking.h" />
+    <ClInclude Include="..\src\SceneKinematicPerimeterAvoidance.h" />
     <ClInclude Include="..\src\SceneKinematicPursue.h" />
     <ClInclude Include="..\src\SceneKinematicSeek.h" />
     <ClInclude Include="..\src\SceneKinematicWander.h" />

@@ -1,5 +1,7 @@
 #include "SDL_SimpleApp.h"
 
+
+
 using namespace std;
 
 SDL_SimpleApp * SDL_SimpleApp::s_pInstance = 0;
@@ -16,8 +18,8 @@ SDL_SimpleApp * SDL_SimpleApp::Instance()
 SDL_SimpleApp::SDL_SimpleApp()
 {
 	win_fullscreen = false;
-	win_width = 1280;
-	win_height = 768;
+	//WIN_WIDTH = 1280;
+	//WIN_HEIGHT = 768;
 
 	SDL_Init(SDL_INIT_VIDEO);
 
@@ -27,7 +29,7 @@ SDL_SimpleApp::SDL_SimpleApp()
 	}
 
 	window = SDL_CreateWindow("SDL Steering Behaviors",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, win_width, win_height, 0);
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, 0);
 
 	if (win_fullscreen)
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
@@ -73,7 +75,7 @@ SDL_Event SDL_SimpleApp::run(Scene *scene)
 
 Vector2D SDL_SimpleApp::getWinSize()
 {
-	return Vector2D((float)win_width, (float)win_height);
+	return Vector2D((float)WIN_WIDTH, (float)WIN_HEIGHT);
 }
 
 void SDL_SimpleApp::setWindowTitle(const char *title)

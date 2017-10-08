@@ -48,4 +48,7 @@ public:
 	//Flocking
 	Vector2D Flocking(Agent *agent, Vector2D target, float dtime, std::vector<Agent*> agents);
 	Vector2D Flocking(Agent *agent, Agent *target, float dtime);
+
+	//Perimeter Avoidance
+	Vector2D PerimeterAvoidance(Agent *agent, Vector2D target, float dtime);
 };

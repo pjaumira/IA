@@ -10,6 +10,7 @@
 #include "SceneKinematicEvade.h"
 #include "SceneKinematicWander.h"
 #include "SceneKinematicFlocking.h"
+#include "SceneKinematicPerimeterAvoidance.h"
 
 using namespace std;
 
@@ -79,6 +80,13 @@ int main(int argc, char ** argv)
 			{
 				delete(curr_scene);
 				curr_scene = new SceneKinematicFlocking;
+				app->setWindowTitle(curr_scene->getTitle());
+			}
+			//Perimeter Avoidance
+			if (event.key.keysym.scancode == SDL_SCANCODE_8)
+			{
+				delete(curr_scene);
+				curr_scene = new SceneKinematicPerimeterAvoidance;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
 

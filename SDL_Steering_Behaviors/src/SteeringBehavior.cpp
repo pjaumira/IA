@@ -1,4 +1,5 @@
 #include "SteeringBehavior.h"
+#include "SDL_SimpleApp.h"
 
 #include <vector>
 
@@ -170,7 +171,7 @@ Vector2D SteeringBehavior::Wander(Agent *agent, Vector2D target, float dtime)
 	//Calculate new wander Position
 	Vector2D CircleCenter = agent->position + Vector2D::Normalize(agent->velocity) * WanderOffset;
 
-	Vector2D TargetPosition = (0, 0);
+	Vector2D TargetPosition = (0.0f, 0.0f);
 
 	TargetPosition.x = CircleCenter.x + WanderRadius * cos(TargetAngle);
 	TargetPosition.y = CircleCenter.y + WanderRadius * sin(TargetAngle);
@@ -258,4 +259,41 @@ Vector2D SteeringBehavior::Flocking(Agent *agent, Vector2D target, float dtime, 
 Vector2D SteeringBehavior::Flocking(Agent *agent, Agent *target, float dtime)
 {
 	return (agent, target->position, dtime);
+}
+
+//Perimeter Avoidance
+Vector2D SteeringBehavior::PerimeterAvoidance(Agent *agent, Vector2D target, float dtime) {
+	
+#define PERIMETER_BORDER 50
+	
+	Vector2D desiredVelocity;
+	Vector2D steeringForce;
+
+	//pared izquierda
+	if (agent->position.x < PERIMETER_BORDER)
+		desiredVelocity.x = agent->max_velocity;
+
+	//pared derecha
+	else if (agent->position.x > WIN_WIDTH - PERIMETER_BORDER)
+		desiredVelocity.x = -agent->max_velocity;
+	
+	//pared superior
+	if (agent->position.y < PERIMETER_BORDER)
+		desiredVelocity.y = agent->max_velocity;
+
+	//pared inferior
+	else if (agent->position.y > WIN_HEIGHT - PERIMETER_BORDER)
+		desiredVelocity.y = -agent->max_velocity;
+	
+	if (desiredVelocity.Length() > 0.0f) {
+
+		steeringForce = desiredVelocity - agent->velocity;
+		steeringForce /= agent->max_velocity;
+		steeringForce *= agent->max_force;
+
+	}
+	
+	return steeringForce + Arrive(agent, target, dtime);
+
+	//return Vector2D(0, 0);
 }
