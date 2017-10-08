@@ -11,6 +11,7 @@
 #include "SceneKinematicWander.h"
 #include "SceneKinematicFlocking.h"
 #include "SceneKinematicPerimeterAvoidance.h"
+#include "SceneKinematicCombination.h"
 
 using namespace std;
 
@@ -87,6 +88,13 @@ int main(int argc, char ** argv)
 			{
 				delete(curr_scene);
 				curr_scene = new SceneKinematicPerimeterAvoidance;
+				app->setWindowTitle(curr_scene->getTitle());
+			}
+			//Combinación de Steering Behaviors (Arrive, Evade y Flocking)
+			if (event.key.keysym.scancode == SDL_SCANCODE_9)
+			{
+				delete(curr_scene);
+				curr_scene = new SceneKinematicCombination;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
 
